@@ -28,11 +28,11 @@ namespace CommandLine.Text
         /// <summary>
         /// An empty object used for initialization.
         /// </summary>
-        public static CopyrightInfo Empty 
+        public static CopyrightInfo Empty
         {
             get
             {
-               return new CopyrightInfo("author", 1); 
+               return new CopyrightInfo("author", 1);
             }
         }
 

@@ -1,6 +1,8 @@
 #r "packages/FAKE/tools/FakeLib.dll"
 open Fake
-open Fake.Testing
+open Fake.Core
+open Fake.Core.Globbing.Operators
+open Fake.Core.TargetOperators
 
 let buildDir = "./build/"
 let testDir = "./build/test/"
@@ -11,30 +13,28 @@ let projectDescription = "The Command Line Parser Library offers to CLR applicat
 let projectSummary = "Command Line Parser Library"
 let buildVersion = "2.0.0.0"
 
-Target "Clean" (fun _ ->
+Target.Create "Clean" (fun _ ->
     CleanDirs [buildDir; testDir]
 )
 
-Target "Default" (fun _ ->
-    trace "Command Line Parser Library 2.0 pre-release"
+Target.Create "Default" (fun _ ->
+    Trace.trace "Command Line Parser Library 2.0 pre-release"
 )
 
-Target "BuildLib" (fun _ ->
-    !! "src/CommandLine/CommandLine.csproj"
-        |> MSBuildRelease buildDir "Build"
-        |> Log "LibBuild-Output: "
+Target.Create "BuildLib" (fun _ ->
+    Fake.DotNet.MsBuild.MSBuildRelease buildDir "Build" ["./src/CommandLine/CommandLine.csproj"]
+    |> Trace.Log "LibBuild-Output: "
 )
 
-Target "BuildTest" (fun _ ->
-    !! "tests/CommandLine.Tests/CommandLine.Tests.csproj"
-        |> MSBuildDebug testDir "Build"
-        |> Log "TestBuild-Output: "
+Target.Create "BuildTest" (fun _ ->
+    Fake.DotNet.MsBuild.MSBuildRelease testDir "Build" ["./tests/CommandLine.Tests/CommandLine.Tests.csproj"]
+    |> Trace.Log "TestBuild-Output: "
 )
 
-Target "Test" (fun _ ->
+Target.Create "Test" (fun _ ->
     //trace "Running Tests..."
-    !! (testDir @@ "\CommandLine.Tests.dll") 
-      |> xUnit2 (fun p -> {p with HtmlOutputPath = Some(testDir @@ "xunit.html")})
+    !! (testDir @@ "\CommandLine.Tests.dll")
+      |> Fake.DotNet.Testing.XUnit2.xUnit2 (fun p -> {p with HtmlOutputPath = Some(testDir @@ "xunit.html"); ToolPath = "./packages/xunit.runner.console/tools/netcoreapp2.0/xunit.console.dll" })
 )
 
 // Dependencies
@@ -44,4 +44,4 @@ Target "Test" (fun _ ->
     ==> "Test"
     ==> "Default"
 
-RunTargetOrDefault "Default"
+Target.RunOrDefault "Default"

@@ -14,11 +14,6 @@ using CommandLine.Text;
 [assembly: AssemblyUsage(
     "[no usage, this is a dll]")]
 
-#if DEBUG
-[assembly: AssemblyConfiguration("Debug")]
-#else
-//[assembly: AssemblyConfiguration("Release")]
-#endif
 [assembly: ComVisible(false)]
 //[assembly: CLSCompliant(true)]
 //[assembly: AssemblyCompany("")]

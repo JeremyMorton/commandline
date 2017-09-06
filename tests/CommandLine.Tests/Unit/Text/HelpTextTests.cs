@@ -324,8 +324,8 @@ namespace CommandLine.Tests.Unit.Text
             lines[1].Should().StartWithEquivalent("Copyright (c)");
 #else
             // Takes the name of the xUnit test program
-            lines[0].Should().StartWithEquivalent("xUnit");
-            lines[1].Should().StartWithEquivalent("Copyright (C) Outercurve Foundation");
+            lines[0].Should().StartWithEquivalent("testhost");
+            lines[1].Should().StartWithEquivalent("Copyright (C) 1 author");
 #endif
             lines[2].ShouldBeEquivalentTo("ERROR(S):");
             lines[3].ShouldBeEquivalentTo("Token 'badtoken' is not recognized.");
@@ -360,8 +360,8 @@ namespace CommandLine.Tests.Unit.Text
             lines[1].Should().StartWithEquivalent("Copyright (c)");
 #else
             // Takes the name of the xUnit test program
-            lines[0].Should().StartWithEquivalent("xUnit");
-            lines[1].Should().StartWithEquivalent("Copyright (C) Outercurve Foundation");
+            lines[0].Should().StartWithEquivalent("testhost");
+            lines[1].Should().StartWithEquivalent("Copyright (C) 1 author");
 #endif
             lines[2].ShouldBeEquivalentTo("-p, --patch      Use the interactive patch selection interface to chose which");
             lines[3].ShouldBeEquivalentTo("changes to commit.");
@@ -393,8 +393,8 @@ namespace CommandLine.Tests.Unit.Text
             lines[1].ShouldBeEquivalentTo("Copyright (c) 2005 - 2015 Giacomo Stelluti Scala");
 #else
             // Takes the name of the xUnit test program
-            lines[0].Should().StartWithEquivalent("xUnit");
-            lines[1].Should().StartWithEquivalent("Copyright (C) Outercurve Foundation");
+            lines[0].Should().StartWithEquivalent("testhost");
+            lines[1].Should().StartWithEquivalent("Copyright (C) 1 author");
 #endif
             lines[2].ShouldBeEquivalentTo("-p, --patch      Use the interactive patch selection interface to chose which changes to commit.");
             lines[3].ShouldBeEquivalentTo("--amend          Used to amend the tip of the current branch.");
@@ -425,8 +425,8 @@ namespace CommandLine.Tests.Unit.Text
             lines[1].Should().StartWithEquivalent("Copyright (c)");
 #else
             // Takes the name of the xUnit test program
-            lines[0].Should().StartWithEquivalent("xUnit");
-            lines[1].Should().StartWithEquivalent("Copyright (C) Outercurve Foundation");
+            lines[0].Should().StartWithEquivalent("testhost");
+            lines[1].Should().StartWithEquivalent("Copyright (C) 1 author");
 #endif
             lines[2].ShouldBeEquivalentTo("add        Add file contents to the index.");
             lines[3].ShouldBeEquivalentTo("commit     Record changes to the repository.");
@@ -511,8 +511,8 @@ namespace CommandLine.Tests.Unit.Text
             lines[1].Should().StartWithEquivalent("Copyright (c)");
 #else
             // Takes the name of the xUnit test program
-            lines[0].Should().StartWithEquivalent("xUnit");
-            lines[1].Should().StartWithEquivalent("Copyright (C) Outercurve Foundation");
+            lines[0].Should().StartWithEquivalent("testhost");
+            lines[1].Should().StartWithEquivalent("Copyright (C) 1 author");
 #endif
             lines[2].ShouldBeEquivalentTo("ERROR(S):");
             lines[3].ShouldBeEquivalentTo("Token 'badtoken' is not recognized.");

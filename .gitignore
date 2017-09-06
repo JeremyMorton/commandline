@@ -16,7 +16,11 @@ src/templates/CSharpTemplate/bin/*
 src/templates/CSharpTemplate/obj 
 src/templates/VBNetTemplate/bin/*
 src/templates/VBNetTemplate/obj
-build/*
+wrap/CommandLine/bin/*
+wrap/CommandLine/obj
+wrap/FSharp.Core/bin/*
+wrap/FSharp.Core/obj
+**/build/
 packages
 paket-files
 *.suo

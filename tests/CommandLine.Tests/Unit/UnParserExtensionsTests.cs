@@ -11,10 +11,10 @@ using Microsoft.FSharp.Core;
 
 namespace CommandLine.Tests.Unit
 {
-    public class UnParserExtensionsTests
+    public static class UnParserExtensionsTests
     {
         [Theory]
-        [MemberData("UnParseData")]
+        [MemberData(nameof(UnParseData))]
         public static void UnParsing_instance_returns_command_line(Simple_Options options, string result)
         {
             new Parser()
@@ -23,7 +23,7 @@ namespace CommandLine.Tests.Unit
         }
 
         [Theory]
-        [MemberData("UnParseDataVerbs")]
+        [MemberData(nameof(UnParseDataVerbs))]
         public static void UnParsing_instance_returns_command_line_for_verbs(Add_Verb verb, string result)
         {
             new Parser()
@@ -32,7 +32,7 @@ namespace CommandLine.Tests.Unit
         }
 
         [Theory]
-        [MemberData("UnParseDataImmutable")]
+        [MemberData(nameof(UnParseDataImmutable))]
         public static void UnParsing_immutable_instance_returns_command_line(Immutable_Simple_Options options, string result)
         {
             new Parser()
@@ -42,7 +42,7 @@ namespace CommandLine.Tests.Unit
 
 #if !SKIP_FSHARP
         [Theory]
-        [MemberData("UnParseDataFSharpOption")]
+        [MemberData(nameof(UnParseDataFSharpOption))]
         public static void UnParsing_instance_with_fsharp_option_returns_command_line(Options_With_FSharpOption options, string result)
         {
             new Parser()
@@ -96,7 +96,7 @@ namespace CommandLine.Tests.Unit
                 .ShouldBeEquivalentTo("-something with dash");
         }
 
-        public static IEnumerable<object> UnParseData
+        public static IEnumerable<object[]> UnParseData
         {
             get
             {
@@ -114,7 +114,7 @@ namespace CommandLine.Tests.Unit
         }
 
 
-        public static IEnumerable<object> UnParseDataVerbs
+        public static IEnumerable<object[]> UnParseDataVerbs
         {
             get
             {
@@ -124,7 +124,7 @@ namespace CommandLine.Tests.Unit
             }
         }
 
-        public static IEnumerable<object> UnParseDataImmutable
+        public static IEnumerable<object[]> UnParseDataImmutable
         {
             get
             {
@@ -142,7 +142,7 @@ namespace CommandLine.Tests.Unit
         }
 
 #if !SKIP_FSHARP
-        public static IEnumerable<object> UnParseDataFSharpOption
+        public static IEnumerable<object[]> UnParseDataFSharpOption
         {
             get
             {

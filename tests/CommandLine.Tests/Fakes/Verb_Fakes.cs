@@ -83,6 +83,22 @@ namespace CommandLine.Tests.Fakes
         public string OptValue { get; set; }
 
         [Value(0)]
-        public string PosValue { get; set; }
+        public string Pos0Value { get; set; }
+
+        [Value(1)]
+        public string Pos1Value { get; set; }
+    }
+
+    [Verb("test")]
+    class Verb_With_Option_And_Value_Of_Int_Type
+    {
+        [Option('o', "opt")]
+        public int OptValue { get; set; }
+
+        [Value(0)]
+        public int Pos0Value { get; set; }
+
+        [Value(1)]
+        public int Pos1Value { get; set; }
     }
 }

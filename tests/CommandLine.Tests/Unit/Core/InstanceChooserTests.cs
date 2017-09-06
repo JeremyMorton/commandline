@@ -32,7 +32,7 @@ namespace CommandLine.Tests.Unit.Core
             // Fixture setup
             var expectedErrors = new[] { new NoVerbSelectedError() };
 
-            // Exercize system 
+            // Exercize system
             var result = InvokeChoose(
                 new[] { typeof(Add_Verb), typeof(Commit_Verb), typeof(Clone_Verb) },
                 new string[] { });
@@ -49,7 +49,7 @@ namespace CommandLine.Tests.Unit.Core
             // Fixture setup
             var expectedErrors = new[] { new HelpVerbRequestedError(null, null, false) };
 
-            // Exercize system 
+            // Exercize system
             var result = InvokeChoose(
                 new[] { typeof(Add_Verb), typeof(Commit_Verb), typeof(Clone_Verb) },
                 new[] { "help" });
@@ -66,7 +66,7 @@ namespace CommandLine.Tests.Unit.Core
             // Fixture setup
             var expectedErrors = new[] { new HelpVerbRequestedError("commit", typeof(Commit_Verb), true) };
 
-            // Exercize system 
+            // Exercize system
             var result = InvokeChoose(
                 new[] { typeof(Add_Verb), typeof(Commit_Verb), typeof(Clone_Verb) },
                 new[] { "help", "commit" });
@@ -83,7 +83,7 @@ namespace CommandLine.Tests.Unit.Core
             // Fixture setup
             var expectedErrors = new[] { new HelpVerbRequestedError(null, null, false) };
 
-            // Exercize system 
+            // Exercize system
             var result = InvokeChoose(
                 new[] { typeof(Add_Verb), typeof(Commit_Verb), typeof(Clone_Verb) },
                 new[] { "help", "earthunderalienattack" });
@@ -100,7 +100,7 @@ namespace CommandLine.Tests.Unit.Core
             // Fixture setup
             var expected = new Add_Verb { Patch = true, FileName = "dummy.bin"};
 
-            // Exercize system 
+            // Exercize system
             var result = InvokeChoose(
                 new[] { typeof(Add_Verb), typeof(Commit_Verb), typeof(Clone_Verb) },
                 new[] { "add", "--patch", "dummy.bin" });
@@ -117,7 +117,7 @@ namespace CommandLine.Tests.Unit.Core
             // Fixture setup
             var expected = new Immutable_Add_Verb(true, default(bool), "dummy.bin");
 
-            // Exercize system 
+            // Exercize system
             var result = InvokeChoose(
                 new[] { typeof(Immutable_Add_Verb), typeof(Immutable_Commit_Verb), typeof(Immutable_Clone_Verb) },
                 new[] { "add", "--patch", "dummy.bin" });
@@ -127,14 +127,14 @@ namespace CommandLine.Tests.Unit.Core
             expected.ShouldBeEquivalentTo(((Parsed<object>)result).Value);
             // Teardown
         }
-    
+
         [Fact]
         public void Parse_sequence_verb_returns_verb_instance()
         {
             // Fixture setup
             var expected = new SequenceOptions { LongSequence = new long[] { }, StringSequence = new[] { "aa", "b" } };
 
-            // Exercize system 
+            // Exercize system
             var result = InvokeChoose(
                 new[] { typeof(Add_Verb), typeof(Commit_Verb), typeof(Clone_Verb), typeof(SequenceOptions) },
                 new[] { "sequence", "-s", "aa", "b" });
@@ -155,7 +155,7 @@ namespace CommandLine.Tests.Unit.Core
             // Fixture setup
             var expected = new SequenceOptions { LongSequence = new long[] { }, StringSequence = expectedString };
 
-            // Exercize system 
+            // Exercize system
             var result = InvokeChoose(
                 new[] { typeof(Add_Verb), typeof(Commit_Verb), typeof(Clone_Verb), typeof(SequenceOptions) },
                 arguments);

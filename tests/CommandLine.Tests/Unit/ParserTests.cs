@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using CommandLine.Tests.Fakes;
@@ -345,7 +344,7 @@ namespace CommandLine.Tests.Unit
             lines[0].Should().StartWithEquivalent("CommandLine");
 #else
             // Takes the name of the xUnit test program
-            lines[0].Should().StartWithEquivalent("xUnit");
+            lines[0].Should().StartWithEquivalent("testhost");
 #endif
             // Teardown
         }
@@ -369,8 +368,8 @@ namespace CommandLine.Tests.Unit
             lines[1].ShouldBeEquivalentTo("Copyright (c) 2005 - 2015 Giacomo Stelluti Scala");
 #else
             // Takes the name of the xUnit test program
-            lines[0].Should().StartWithEquivalent("xUnit");
-            lines[1].Should().StartWithEquivalent("Copyright (C) Outercurve Foundation");
+            lines[0].Should().StartWithEquivalent("testhost");
+            lines[1].Should().StartWithEquivalent("Copyright (C) 1 author");
 #endif
             lines[2].ShouldBeEquivalentTo("ERROR(S):");
             lines[3].ShouldBeEquivalentTo("No verb selected.");
@@ -383,7 +382,7 @@ namespace CommandLine.Tests.Unit
         }
 
         [Fact]
-        public void Double_dash_help_dispalys_verbs_index_in_verbs_scenario()
+        public void Double_dash_help_displays_verbs_index_in_verbs_scenario()
         {
             // Fixture setup
             var help = new StringWriter();
@@ -400,8 +399,8 @@ namespace CommandLine.Tests.Unit
             lines[1].ShouldBeEquivalentTo("Copyright (c) 2005 - 2015 Giacomo Stelluti Scala");
 #else
             // Takes the name of the xUnit test program
-            lines[0].Should().StartWithEquivalent("xUnit");
-            lines[1].Should().StartWithEquivalent("Copyright (C) Outercurve Foundation");
+            lines[0].Should().StartWithEquivalent("testhost");
+            lines[1].Should().StartWithEquivalent("Copyright (C) 1 author");
 #endif
             lines[2].ShouldBeEquivalentTo("add        Add file contents to the index.");
             lines[3].ShouldBeEquivalentTo("commit     Record changes to the repository.");
@@ -432,7 +431,7 @@ namespace CommandLine.Tests.Unit
             lines[0].Should().StartWithEquivalent("CommandLine");
 #else
             // Takes the name of the xUnit test program
-            lines[0].Should().StartWithEquivalent("xUnit");
+            lines[0].Should().StartWithEquivalent("testhost");
 #endif
             // Teardown
         }
@@ -455,8 +454,8 @@ namespace CommandLine.Tests.Unit
             lines[1].ShouldBeEquivalentTo("Copyright (c) 2005 - 2015 Giacomo Stelluti Scala");
 #else
             // Takes the name of the xUnit test program
-            lines[0].Should().StartWithEquivalent("xUnit");
-            lines[1].Should().StartWithEquivalent("Copyright (C) Outercurve Foundation");
+            lines[0].Should().StartWithEquivalent("testhost");
+            lines[1].Should().StartWithEquivalent("Copyright (C) 1 author");
 #endif
             lines[2].ShouldBeEquivalentTo("ERROR(S):");
             lines[3].ShouldBeEquivalentTo("Option: 'weburl' is not compatible with: 'ftpurl'.");
@@ -504,8 +503,8 @@ namespace CommandLine.Tests.Unit
             lines[1].ShouldBeEquivalentTo("Copyright (c) 2005 - 2015 Giacomo Stelluti Scala");
 #else
             // Takes the name of the xUnit test program
-            lines[0].Should().StartWithEquivalent("xUnit");
-            lines[1].Should().StartWithEquivalent("Copyright (C) Outercurve Foundation");
+            lines[0].Should().StartWithEquivalent("testhost");
+            lines[1].Should().StartWithEquivalent("Copyright (C) 1 author");
 #endif
             lines[2].ShouldBeEquivalentTo("ERROR(S):");
             lines[3].ShouldBeEquivalentTo("Option 'badoption' is unknown.");
@@ -536,7 +535,7 @@ namespace CommandLine.Tests.Unit
             // Exercize system
             sut.ParseArguments<Secert_Verb, Add_Verb_With_Usage_Attribute>(new string[] { });
             var result = help.ToString();
-            
+
             // Verify outcome
             var lines = result.ToNotEmptyLines().TrimStringArray();
 #if !PLATFORM_DOTNET
@@ -544,8 +543,8 @@ namespace CommandLine.Tests.Unit
             lines[1].ShouldBeEquivalentTo("Copyright (c) 2005 - 2015 Giacomo Stelluti Scala");
 #else
             // Takes the name of the xUnit test program
-            lines[0].Should().StartWithEquivalent("xUnit");
-            lines[1].Should().StartWithEquivalent("Copyright (C) Outercurve Foundation");
+            lines[0].Should().StartWithEquivalent("testhost");
+            lines[1].Should().StartWithEquivalent("Copyright (C) 1 author");
 #endif
             lines[2].ShouldBeEquivalentTo("ERROR(S):");
             lines[3].ShouldBeEquivalentTo("No verb selected.");
@@ -566,7 +565,7 @@ namespace CommandLine.Tests.Unit
             // Exercize system
             sut.ParseArguments<Secert_Verb, Add_Verb_With_Usage_Attribute>(new string[] { "secert", "--help" });
             var result = help.ToString();
-            
+
             // Verify outcome
             var lines = result.ToNotEmptyLines().TrimStringArray();
 #if !PLATFORM_DOTNET
@@ -574,8 +573,8 @@ namespace CommandLine.Tests.Unit
             lines[1].ShouldBeEquivalentTo("Copyright (c) 2005 - 2015 Giacomo Stelluti Scala");
 #else
             // Takes the name of the xUnit test program
-            lines[0].Should().StartWithEquivalent("xUnit");
-            lines[1].Should().StartWithEquivalent("Copyright (C) Outercurve Foundation");
+            lines[0].Should().StartWithEquivalent("testhost");
+            lines[1].Should().StartWithEquivalent("Copyright (C) 1 author");
 #endif
             lines[2].ShouldBeEquivalentTo("-f, --force    Allow adding otherwise ignored files.");
             lines[3].ShouldBeEquivalentTo("--help         Display this help screen.");
@@ -583,7 +582,7 @@ namespace CommandLine.Tests.Unit
 
             // Teardown
         }
-        
+
         [Fact]
         public void Parse_options_when_given_hidden_verb()
         {
@@ -594,7 +593,7 @@ namespace CommandLine.Tests.Unit
 
             // Exercize system
             var result = sut.ParseArguments<Secert_Verb, Add_Verb_With_Usage_Attribute>(new string[] { "secert", "--force" });
-            
+
 
             // Verify outcome
             result.Tag.ShouldBeEquivalentTo(ParserResultType.Parsed);
@@ -614,7 +613,7 @@ namespace CommandLine.Tests.Unit
 
             // Exercize system
             var result = sut.ParseArguments<Secert_Verb, Add_Verb_With_Usage_Attribute>(new string[] { "secert", "--force", "--secert-option", "shhh" });
-            
+
             // Verify outcome
             result.Tag.ShouldBeEquivalentTo(ParserResultType.Parsed);
             result.GetType().Should().Be<Parsed<object>>();
@@ -642,8 +641,8 @@ namespace CommandLine.Tests.Unit
             lines[1].ShouldBeEquivalentTo("Copyright (c) 2005 - 2015 Giacomo Stelluti Scala");
 #else
             // Takes the name of the xUnit test program
-            lines[0].Should().StartWithEquivalent("xUnit");
-            lines[1].Should().StartWithEquivalent("Copyright (C) Outercurve Foundation");
+            lines[0].Should().StartWithEquivalent("testhost");
+            lines[1].Should().StartWithEquivalent("Copyright (C) 1 author");
 #endif
             lines[2].ShouldBeEquivalentTo("--no-hardlinks    Optimize the cloning process from a repository on a local");
             lines[3].ShouldBeEquivalentTo("filesystem by copying files.");
@@ -656,7 +655,7 @@ namespace CommandLine.Tests.Unit
         }
 
         [Theory]
-        [MemberData("IgnoreUnknownArgumentsData")]
+        [MemberData(nameof(IgnoreUnknownArgumentsData))]
         public void When_IgnoreUnknownArguments_is_set_valid_unknown_arguments_avoid_a_failure_parsing(
             string[] arguments,
             Simple_Options expected)
@@ -675,7 +674,7 @@ namespace CommandLine.Tests.Unit
         }
 
         [Theory]
-        [MemberData("IgnoreUnknownArgumentsForVerbsData")]
+        [MemberData(nameof(IgnoreUnknownArgumentsForVerbsData))]
         public void When_IgnoreUnknownArguments_is_set_valid_unknown_arguments_avoid_a_failure_parsing_for_verbs(
             string[] arguments,
             Commit_Verb expected)
@@ -712,8 +711,8 @@ namespace CommandLine.Tests.Unit
             lines[1].ShouldBeEquivalentTo("Copyright (c) 2005 - 2015 Giacomo Stelluti Scala");
 #else
             // Takes the name of the xUnit test program
-            lines[0].Should().StartWithEquivalent("xUnit");
-            lines[1].Should().StartWithEquivalent("Copyright (C) Outercurve Foundation");
+            lines[0].Should().StartWithEquivalent("testhost");
+            lines[1].Should().StartWithEquivalent("Copyright (C) 1 author");
 #endif
             lines[2].ShouldBeEquivalentTo("ERROR(S):");
             lines[3].ShouldBeEquivalentTo("Option 'bad-arg' is unknown.");
@@ -738,7 +737,7 @@ namespace CommandLine.Tests.Unit
                 };
             var sut = new Parser();
 
-            // Exercize system 
+            // Exercize system
             var result = sut.ParseArguments<Options_With_SetName_That_Ends_With_Previous_SetName>(
                 new[] { "--weburl", "value", "--somethingelse", "othervalue" });
 
@@ -768,7 +767,7 @@ namespace CommandLine.Tests.Unit
             result.MapResult(_ => true, _ => false).Should().BeTrue();
         }
 
-        public static IEnumerable<object> IgnoreUnknownArgumentsData
+        public static IEnumerable<object[]> IgnoreUnknownArgumentsData
         {
             get
             {
@@ -778,7 +777,7 @@ namespace CommandLine.Tests.Unit
             }
         }
 
-        public static IEnumerable<object> IgnoreUnknownArgumentsForVerbsData
+        public static IEnumerable<object[]> IgnoreUnknownArgumentsForVerbsData
         {
             get
             {
@@ -794,7 +793,7 @@ namespace CommandLine.Tests.Unit
             parser.ParseArguments<NullDefaultCommandLineArguments>("".Split())
                 .WithParsed(r =>
                 {
-                    Assert.Equal(null, r.User);
+                    Assert.Null(r.User);
                 });
         }
 
@@ -819,18 +818,50 @@ namespace CommandLine.Tests.Unit
         }
 
         [Fact]
+        public void Parse_options_with_same_int_option_and_value_args()
+        {
+            var parser = Parser.Default;
+            parser.ParseArguments<Options_With_Option_And_Value_Of_Int_Type>(
+                new[] { "0", "-o", "0" })
+                .WithNotParsed(errors => { throw new InvalidOperationException("Must be parsed."); })
+                .WithParsed(args =>
+                {
+                    Assert.Equal(0, args.OptValue);
+                    Assert.Equal(0, args.PosValue);
+                });
+        }
+
+        [Fact]
         public void Parse_verb_with_same_option_and_value_args()
         {
             var parser = Parser.Default;
             var result = parser.ParseArguments(
-                new[] { "test", "arg", "-o", "arg" }, 
+                new[] { "test", "arg", "-o", "arg", "otherarg" },
                 typeof(Verb_With_Option_And_Value_Of_String_Type));
             result
                 .WithNotParsed(errors => { throw new InvalidOperationException("Must be parsed."); })
                 .WithParsed<Verb_With_Option_And_Value_Of_String_Type>(args =>
                 {
                     Assert.Equal("arg", args.OptValue);
-                    Assert.Equal("arg", args.PosValue);
+                    Assert.Equal("arg", args.Pos0Value);
+                    Assert.Equal("otherarg", args.Pos1Value);
+                });
+        }
+
+        [Fact]
+        public void Parse_verb_with_same_int_option_and_value_args()
+        {
+            var parser = Parser.Default;
+            var result = parser.ParseArguments(
+                new[] { "test", "0", "-o", "0", "1" },
+                typeof(Verb_With_Option_And_Value_Of_Int_Type));
+            result
+                .WithNotParsed(errors => { throw new InvalidOperationException("Must be parsed."); })
+                .WithParsed<Verb_With_Option_And_Value_Of_Int_Type>(args =>
+                {
+                    Assert.Equal(0, args.OptValue);
+                    Assert.Equal(0, args.Pos0Value);
+                    Assert.Equal(1, args.Pos1Value);
                 });
         }
 

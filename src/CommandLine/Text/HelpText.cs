@@ -41,7 +41,7 @@ namespace CommandLine.Text
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommandLine.Text.HelpText"/> class 
+        /// Initializes a new instance of the <see cref="CommandLine.Text.HelpText"/> class
         /// specifying the sentence builder.
         /// </summary>
         /// <param name="sentenceBuilder">
@@ -442,7 +442,7 @@ namespace CommandLine.Text
         /// </summary>
         /// <param name="maximumLength">The maximum length of the help screen.</param>
         /// <param name="result">A parsing computation result.</param>
-        /// <exception cref="System.ArgumentNullException">Thrown when parameter <paramref name="result"/> is null.</exception>    
+        /// <exception cref="System.ArgumentNullException">Thrown when parameter <paramref name="result"/> is null.</exception>
         public HelpText AddOptions<T>(int maximumLength, ParserResult<T> result)
         {
             if (result == null) throw new ArgumentNullException("result");
